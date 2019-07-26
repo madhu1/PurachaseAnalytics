@@ -1,4 +1,4 @@
-# PurachaseAnalytics
+# PurchaseAnalytics
 This project is designed to perform fast purchase analytics tasks to summarize information about instacart data.
 Instacart has published a [dataset](https://www.instacart.com/datasets/grocery-shopping-2017) containing 3 million Instacart orders.
 
