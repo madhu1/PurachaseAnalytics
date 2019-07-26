@@ -33,10 +33,13 @@ File Structure:
                      |__writefile.py
            
  How to run this code:
- This code is written in python with builtin data structure and requires no external libraries.
- To run this code you can use the following command :
+ This code is written in python with builtin data structures and requires no external libraries.
+ To run this code you can use the following command:
  sh run.sh
  
+ More about the code:
+ purchase_analytics.py : is the main file that executes the required task. It has two helper files that are used to read the product information and write the processed output/
+ readp
  
  
            
