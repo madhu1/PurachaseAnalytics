@@ -1,10 +1,9 @@
 This is the directory contains the source code in the following files:
 
-── src
-    └── purchase_analytics.py
-    |__ readfile.py
-    |__ writefile.py
-    |__ processorder.py
+── src  >purchase_analytics.py
+        >readfile.py
+        >writefile.py
+        >processorder.py
 
 Main file: 
 purchase_analytics.py: This file contains code to obtain inputs and process them to create a output/report.csv of data set.
