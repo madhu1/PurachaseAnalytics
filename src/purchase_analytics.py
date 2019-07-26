@@ -2,52 +2,37 @@ import sys;
 import os;
 import logging;
 from readfile import readproductinfo; 
-from writefile import writedeptinfo
+from writefile import writedeptinfo;
+from processorder  import process_departmentinfo;
 
-logging.basicConfig(level=logging.ERROR)
+
+'''
+This program is main code which initiate the analytics process
+'''
+
+'''
+Part 1: set debug level and  log the inputs and outputs
+'''
+logging.basicConfig(level=logging.DEBUG)
 logging.debug('Purchase Analytics --')
-
 logging.debug("Number of arguments:%s" %(len(sys.argv)))
 logging.debug( "Argument List: %s"%( str(sys.argv)))
 
+'''
+Part 2: Create a hashmap of productid (key): dept_id (value) using function readproductinfo ;
+'''
 filepath = sys.argv[2]
 productmap=readproductinfo(filepath);
 logging.debug (list(productmap))
 logging.debug(list(productmap.values()))
 
+'''
+Part 3: Read the incoming orders to create a cummulative summary of orders for each department. Use the productmap to map the productid to the dept_id and update deptinfo hashmap.
+Sort the hashmap based on dept_id and write it to reports file
+'''
 
 filepath=sys.argv[1]
-if not os.path.isfile(filepath):
-    print("File path {} does not exist. Exiting...".format(filepath))
-    logging.error("File path {} does not exist. Exiting...".format(filepath))
-    sys.exit()
+deptinfo=process_departmentinfo(filepath,productmap)
+logging.debug(list(deptinfo))
+writedeptinfo(deptinfo, sys.argv[3])
 
-
-
-with open(filepath) as fp:
-    cnt = 0
-    dept={};
-    logging.debug("Reading order info")
-    for line in fp:
-        line=line.rstrip();
-        word=line.split(',')
-        #logging.debug("{}: {} {} ".format(cnt, word[1], word[3]))
-        if(cnt>0):
-            val=[0,0,0.0];
-            pid=int(word[1])
-            if(~pid in productmap):
-                print ( "Pid %d does not exist in productmap" % (pid))
-                logging.warning("Pid %d does not exist in productmap" % (pid))
-            if(productmap[pid] in dept):
-                val=dept[productmap[pid]];
-            val=[val[0]+1, val[1]+1-int(word[3]),0.0]
-            val[2]=float(float(val[1])/float(val[0]))    
-            dept[productmap[pid]]=val;                    
-        cnt += 1    
-        
-
-    #for key in sorted(dept.keys()):
-    #        print("%s: %s" % (key, dept[key]))
-    writedeptinfo(dept, sys.argv[3])        
-    #print(list(dept))
-    #print(list(dept.values()))

@@ -1,5 +1,11 @@
 import os;
 import logging;
+'''
+This function creates a productmap which is hashmap of product_id (key): dept_id(value). 
+Allows easy and fast lookup. 
+Returns the productmap.
+'''
+
 def readproductinfo(filepath):
     productmap={};
     try:

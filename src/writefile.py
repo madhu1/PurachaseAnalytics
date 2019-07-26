@@ -1,5 +1,11 @@
 import logging;
+
+'''
+This function performs the task of writing information data to the reports file.
+'''
 def writedeptinfo(dept, filepath):
+    if len(dept)==0:
+        logging.warning("No department information to write to file")
     try:
         f= open(filepath,"w+")
         f.write("%s\n"%("department_id,number_of_orders,number_of_first_orders,percentage"))
