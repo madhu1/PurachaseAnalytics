@@ -36,13 +36,16 @@ File Structure:
  This code is written in python with builtin data structures and requires no external libraries.
  To run this code you can use the following command:
  sh run.sh
+
+ 
  
  More about the code:
- purchase_analytics.py : is the main file that executes the required task. It has two helper files (readfile.py and writefile.py) that are used to read the product information and write the department information summary in the output directory.
- 
- The product info is hashmap of productid (key) and department id (value). This allows a quick lookup to find the department associated with the product.
+ src/purchase_analytics.py : is the main file that executes the required task. It has two helper files (src/readfile.py and src/writefile.py) that are used to read the product information and write the department information summary in the output directory.
+
+The code is based on two hashmap data structures productmap and deptinfo.
+The product information is hashmap(productmap) of productid (key) and department id (value). This allows a quick lookup to find the department associated with the product.
 The deptinfo holds the summary information about the department which is updated with each new order. It is also a hashmap that counts new order incoming to the department and ratio of first time order and total orders in the department.
 Each operation to find the department and updating information about the department in O(1) complexity. 
  
- 
+Logging features allow to debug the code if necessary. 
            
